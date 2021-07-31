@@ -1,0 +1,19 @@
+INFO  21-07-31 14:12:39[restartedMain] [Application:55] - Starting Application using Java 15.0.2 on DESKTOP-6O58AEJ with PID 12764 (C:\Users\hong\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\test\target\classes started by hong in C:\Users\hong\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\test)
+INFO  21-07-31 14:12:39[restartedMain] [Application:663] - The following profiles are active: local
+INFO  21-07-31 14:12:40[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  21-07-31 14:12:40[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  21-07-31 14:12:40[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  21-07-31 14:12:40[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.48]
+INFO  21-07-31 14:12:41[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  21-07-31 14:12:41[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 1394 ms
+INFO  21-07-31 14:12:41[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  21-07-31 14:12:41[restartedMain] [WelcomePageHandlerMapping:53] - Adding welcome page: class path resource [static/index.html]
+WARN  21-07-31 14:12:41[restartedMain] [ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration:105] - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  21-07-31 14:12:41[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  21-07-31 14:12:41[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  21-07-31 14:12:41[restartedMain] [Application:61] - Started Application in 1.739 seconds (JVM running for 3069.523)
+INFO  21-07-31 14:12:41[restartedMain] [ConditionEvaluationDeltaLoggingListener:63] - Condition evaluation unchanged
+INFO  21-07-31 14:12:55[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  21-07-31 14:12:55[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  21-07-31 14:12:55[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  21-07-31 14:12:55[http-nio-8080-exec-1] [userController:79] - 글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트
