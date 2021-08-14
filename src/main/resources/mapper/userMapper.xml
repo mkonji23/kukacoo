@@ -3,6 +3,32 @@
 <mapper namespace="com.user.mapper.userMapper">
 	<select id="getUserList" resultType="camelMap">
 		SELECT * FROM
-		hash_test;
+		new_table;
 	</select>
+	
+	<select id="getUserList2" resultType="camelMap">
+		SELECT 
+		  T_ID as userId
+		, T_PASSWORD as userPassword
+		FROM new_table
+		WHERE T_ID = #{userId}
+		
+	</select>
+	
+	<insert id="insertTestList" parameterType="com.user.vo.userVO">
+		INSERT INTO new_table
+		(
+			T_NAME,
+			T_ID,
+			T_PASSWORD,
+			T_DESCRIPTION
+		)
+		VALUES
+		(
+			  #{userName}
+			, #{userId}
+			, #{userPassword}
+			, #{userDescription}
+		);
+	</insert>
 </mapper>

@@ -1,8 +1,6 @@
 package com.user.web;
 
 
-import java.util.Map;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.user.service.userService;
+import com.user.vo.userVO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -49,6 +48,8 @@ public class userController{
 		return ResponseEntity.ok(userService.getUserList());
 	}
 	 
+	 
+	 
 	 @ApiOperation(  // API에 대한 Swagger 설명
 	            value="유저 정보저장",
 	            notes = "사용자 유저정보를 저장한다.",
@@ -64,20 +65,35 @@ public class userController{
 	            @ApiResponse(code = 404, message = "No params")
 	    })
 	 
-	@PostMapping(value = "/save")
-	public ResponseEntity<?> userList(
-			@ApiParam("MAP 객체") 
-			@RequestBody Map<String,Object> map) throws Exception {
-		return ResponseEntity.ok(userService.insertTestList(map));
-	}
+
+		@PostMapping(value = "/save")
+		public ResponseEntity<?> userList(
+				@RequestBody userVO vo) throws Exception {
+			return ResponseEntity.ok(userService.getUserChk(vo));
+		}
 	 
-	 @GetMapping(value = "/long")
-		public ResponseEntity<?> longMsgList(
-				@ApiParam("메시지를 날려랑") 
-				@RequestParam String msg) throws Exception {
-		 String defaultMsg = "글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트글자수테스트";
-		 	log.info(defaultMsg);
-			return ResponseEntity.ok(msg);
-	}
+	 
+	 
+	 
+	 @ApiOperation(  // API에 대한 Swagger 설명
+	            value="유저 사용자 일치",
+	            notes = "사용자가 ID/PW가 일치한는지 확인.",
+	            httpMethod = "POST",
+	            consumes = "application/json",
+	            produces = "application/json",
+	            protocols = "http",
+	            responseHeaders = {
+	                    //headers
+	            })
+	    @ApiResponses({  // Response Message에 대한 Swagger 설명
+	            @ApiResponse(code = 200, message = "OK"),
+	            @ApiResponse(code = 404, message = "No params")
+	    })
+		@PostMapping(value = "/chk")
+		public ResponseEntity<?> matchUser(@RequestBody userVO vo) throws Exception {
+			return ResponseEntity.ok(userService.insertTestList(vo));
+		}
+		 
+	 
 
 }
