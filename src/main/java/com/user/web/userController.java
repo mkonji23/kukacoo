@@ -21,8 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@Api(value = "user Controller", description = "HomeController 테스트입니다.") // Controller에 대한 Swagger 설명
-@RequestMapping("/user")
+@Api(value = "user Controller", tags="사용자 정보") // Controller에 대한 Swagger 설명
+@RequestMapping("${url.api}/user")
 public class userController{
 	private userService userService;
 	
@@ -43,8 +43,8 @@ public class userController{
 	            @ApiResponse(code = 200, message = "OK"),
 	            @ApiResponse(code = 404, message = "No params")
 	    })
-	@PostMapping(value = "/test")
-	public ResponseEntity<?> insertTest() throws Exception {
+	@PostMapping(value = "/list")
+	public ResponseEntity<?> getUserList() throws Exception {
 		return ResponseEntity.ok(userService.getUserList());
 	}
 	 
@@ -69,7 +69,7 @@ public class userController{
 		@PostMapping(value = "/save")
 		public ResponseEntity<?> userList(
 				@RequestBody userVO vo) throws Exception {
-			return ResponseEntity.ok(userService.getUserChk(vo));
+		 return ResponseEntity.ok(userService.insertTestList(vo));
 		}
 	 
 	 
@@ -90,8 +90,15 @@ public class userController{
 	            @ApiResponse(code = 404, message = "No params")
 	    })
 		@PostMapping(value = "/chk")
-		public ResponseEntity<?> matchUser(@RequestBody userVO vo) throws Exception {
-			return ResponseEntity.ok(userService.insertTestList(vo));
+		public ResponseEntity<?> matchUser(  
+				@ApiParam(name="id",value="아이디",required = true) @RequestParam String id,
+				@ApiParam(name="password",value="패스워드",required = true)  @RequestParam String password) throws Exception {
+
+		    userVO vo = new userVO();
+		    vo.setUserId(id);
+		    vo.setUserPassword(password);
+		    return ResponseEntity.ok(userService.getUserChk(vo));
+			
 		}
 		 
 	 

@@ -8,5 +8,7 @@ public class userVO {
 	private String userPassword;
 	private String userName;
 	private String userDescription;
+	private String saltKey;
+	private String token;
 	
 }

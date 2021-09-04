@@ -3,25 +3,25 @@
 <mapper namespace="com.user.mapper.userMapper">
 	<select id="getUserList" resultType="camelMap">
 		SELECT * FROM
-		new_table;
+		user_tbl;
 	</select>
 	
 	<select id="getUserList2" resultType="camelMap">
 		SELECT 
-		  T_ID as userId
-		, T_PASSWORD as userPassword
-		FROM new_table
-		WHERE T_ID = #{userId}
+		*
+		FROM user_tbl
+		WHERE user_id = #{userId}
 		
 	</select>
 	
 	<insert id="insertTestList" parameterType="com.user.vo.userVO">
-		INSERT INTO new_table
+		INSERT INTO user_tbl
 		(
-			T_NAME,
-			T_ID,
-			T_PASSWORD,
-			T_DESCRIPTION
+			user_name,
+			user_id,
+			user_password,
+			user_description,
+			salt_key
 		)
 		VALUES
 		(
@@ -29,6 +29,7 @@
 			, #{userId}
 			, #{userPassword}
 			, #{userDescription}
+			, #{saltKey}
 		);
 	</insert>
 </mapper>

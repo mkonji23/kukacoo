@@ -15,8 +15,12 @@ import com.user.mapper.userMapper;
 import com.user.service.userService;
 import com.user.vo.userVO;
 
+import jdk.internal.org.jline.utils.Log;
+import lombok.extern.slf4j.Slf4j;
+
 @Service
 @Transactional
+@Slf4j
 public class userServiceImpl implements userService {
 	
     private userMapper userMapper;
@@ -35,7 +39,9 @@ public class userServiceImpl implements userService {
 	@Description("데이터 저장")
 	@Override
 	public int insertTestList(userVO vo) throws Exception {
-		vo.setUserPassword(MessageDigestHelper.getSHA256AsBase64(vo.getUserPassword(), KeyGenerateUtil.getSalt(), 2));
+		String saltKey = KeyGenerateUtil.getSalt();
+		vo.setUserPassword(MessageDigestHelper.getSHA256AsBase64(vo.getUserPassword(), saltKey, 2));
+		vo.setSaltKey(saltKey);
 		int result = userMapper.insertTestList(vo);
 		return result;
 		
@@ -46,7 +52,12 @@ public class userServiceImpl implements userService {
 		// TODO Auto-generated method stub
 		 Map<String,Object> map = userMapper.getUserList2(vo);
 		 String encryPassword = (String) map.get("userpassword");
-		 String textPassword =  MessageDigestHelper.getSHA256AsBase64(vo.getUserPassword(), KeyGenerateUtil.getSalt(), 2);
+		 String saltKey = (String) map.get("saltkey");
+		 String textPassword =  MessageDigestHelper.getSHA256AsBase64(vo.getUserPassword(), saltKey, 2);
+		 
+		 log.info("encryPassword: {}",encryPassword);
+		 log.info("textPassword: {}",textPassword);
+		 
 		 if(encryPassword.equals(textPassword)) {
 			 return 1;
 		 }
