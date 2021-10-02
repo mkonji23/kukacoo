@@ -72,9 +72,6 @@ public class userController{
 		 return ResponseEntity.ok(userService.insertTestList(vo));
 		}
 	 
-	 
-	 
-	 
 	 @ApiOperation(  // API에 대한 Swagger 설명
 	            value="유저 사용자 일치",
 	            notes = "사용자가 ID/PW가 일치한는지 확인.",
@@ -98,6 +95,27 @@ public class userController{
 		    vo.setUserId(id);
 		    vo.setUserPassword(password);
 		    return ResponseEntity.ok(userService.getUserChk(vo));
+			
+		}
+	 
+	 @ApiOperation(  // API에 대한 Swagger 설명
+	            value="유저 토큰 생성하기",
+	            notes = "토큰생성하기.",
+	            httpMethod = "POST",
+	            consumes = "application/json",
+	            produces = "application/json",
+	            protocols = "http",
+	            responseHeaders = {
+	                    //headers
+	            })
+	    @ApiResponses({  // Response Message에 대한 Swagger 설명
+	            @ApiResponse(code = 200, message = "OK"),
+	            @ApiResponse(code = 404, message = "No params")
+	    })
+		@PostMapping(value = "/issue")
+		public ResponseEntity<?> matchUser(  
+				@ApiParam(name="id",value="아이디",required = true) @RequestParam String id) throws Exception {
+		    return ResponseEntity.ok(userService.issueToken(id));
 			
 		}
 		 

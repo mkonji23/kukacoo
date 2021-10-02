@@ -14,4 +14,6 @@ public interface userService {
 	int getUserChk(userVO vo) throws Exception;
 	
 	int insertTestList(userVO vo) throws Exception;
+	
+	String issueToken(String UserId);
 }

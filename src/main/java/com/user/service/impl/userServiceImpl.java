@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.common.security.token.service.AuthenticationTokenProvider;
+import com.common.security.token.vo.AuthenticationToken;
 import com.common.utill.KeyGenerateUtil;
 import com.common.utill.MessageDigestHelper;
 import com.user.mapper.userMapper;
@@ -24,6 +26,10 @@ import lombok.extern.slf4j.Slf4j;
 public class userServiceImpl implements userService {
 	
     private userMapper userMapper;
+//    @Autowired
+//    private AuthenticationToken authenticationToken;
+    @Autowired
+    private AuthenticationTokenProvider authenticationTokenProvider;
 	 
     // 생성자 주입 ㄱ;
 	@Autowired
@@ -63,6 +69,13 @@ public class userServiceImpl implements userService {
 		 }
 		
 		return 0;
+	}
+
+	@Override
+	public String issueToken(String User) {
+//		authenticationTokenProvider.issue(User);
+//		log.info(authenticationToken.getToken());
+		return authenticationTokenProvider.getIssueTokenById(User);
 	}
 
 
